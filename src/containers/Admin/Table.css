@@ -1,0 +1,13 @@
+thead {
+    background-color:rgb(246, 111, 176);
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+    box-shadow: "5px";
+}
+
+tbody {
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: lighter;
+}
+
