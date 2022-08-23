@@ -6,7 +6,7 @@ import * as Yup from "yup";
 
 function Admin() {
   const navigate = useNavigate();
-  const loginSchema = Yup.object().shape({
+  const adminLoginSchema = Yup.object().shape({
     email: Yup.string().email().required(),
     password: Yup.string().min(6).max(10).required("Invalid password"),
   });
@@ -32,17 +32,16 @@ function Admin() {
           <div className="col-md-6 col-lg-6 col-xl-4 offset-xl-1">
             <h3 className="mb-5 text-uppercase">Admin Login</h3>
 
-           
             <Formik
               initialValues={{
                 email: "",
                 password: "",
               }}
-              validationSchema={loginSchema}
+              validationSchema={adminLoginSchema}
               onSubmit={async (values) => {
-               
                 try {
-                  const url = "https://pettishopnew.herokuapp.com/api/admin/login";
+                  const url =
+                    "https://pettishopnew.herokuapp.com/api/admin/login";
                   const { data } = await axios.post(url, values);
 
                   window.localStorage.setItem("accessToken", data);
@@ -57,7 +56,6 @@ function Admin() {
               {({ errors, touched }) => (
                 <Form>
                   <div className="d-flex align-items-center input-field mb-4">
-                   
                     <span className="bx bx-user-circle"></span>
 
                     <Field
@@ -72,7 +70,7 @@ function Admin() {
                       {errors.email}
                     </span>
                   ) : null}
-                 
+
                   <div className="d-flex align-items-center input-field mb-4">
                     <span className="bx bx-user-circle"></span>
                     <Field
@@ -90,7 +88,6 @@ function Admin() {
                       {errors.password}
                     </span>
                   ) : null}
-               
 
                   <div className="text-center text-lg-start mt-4 pt-2">
                     <button

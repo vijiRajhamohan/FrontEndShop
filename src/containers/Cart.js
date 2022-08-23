@@ -9,10 +9,8 @@ import StripeCheckout from "react-stripe-checkout";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  // const [count, setCount] = useState(1);
   const KEY =
     "pk_test_51LUWTrSImtCLG8DbASYF7VaJDv9tWSotvodcAMS2gT5JUzPQGHbCwswCj17U0eqF15u1eX9x7hVnwm0tYzu1Il2900aFjk0q1I";
-
 
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
@@ -21,7 +19,6 @@ const Cart = () => {
   const total = cart.total;
 
   const [stripeToken, setStripeToken] = useState(null);
-  // const [orders, setOrders] = useState([]);
 
   const accessToken = window.localStorage.getItem("accessToken");
   const navigate = useNavigate();
@@ -30,7 +27,7 @@ const Cart = () => {
     console.log(token);
     swal("SUCCESSFULY PAID!", "Check your mail!", "success");
     swal("Thank you!", "Shop Again!");
-    navigate("/login");
+    navigate("/home");
   };
 
   // get Id from authToken
@@ -55,28 +52,33 @@ const Cart = () => {
   useEffect(() => {
     const makeRequest = async () => {
       try {
-        const res = await axios.post("https://pettishopnew.herokuapp.com/api/payment", {
-          tokenId: stripeToken.id,
-          amount: { total },
-        });
-        console.log(res.data);
+        const res = await axios.post(
+          "https://pettishopnew.herokuapp.com/api/payment",
+          {
+            tokenId: stripeToken.id,
+            amount: { total },
+          }
+        );
+        
       } catch (err) {
         console.log(err);
       }
     };
- 
+
     stripeToken && makeRequest();
   }, [stripeToken]);
 
   // Order Api
   const getOrders = async () => {
     try {
-      const res = await axios.post(`https://pettishopnew.herokuapp.com/api/order`, {
-        userId,
-        product,
-        total,
-        
-      });
+      const res = await axios.post(
+        `https://pettishopnew.herokuapp.com/api/order`,
+        {
+          userId,
+          product,
+          total,
+        }
+      );
     } catch (err) {
       console.log(err);
     }
@@ -88,26 +90,14 @@ const Cart = () => {
 
   // remove from cart
   const handleRemove = (index) => {
-    dispatch(removeProduct({ index, price: product[index].price, quantity, total }));
+    dispatch(
+      removeProduct({ index, price: product[index].price, quantity, total })
+    );
   };
-
-
-
-  // const handleQuantity = (type) => {
-  //   if (type === "dec") {
-  //     quantity > 1 && setQuantity(count - 1);
-  //   } else {
-  //     setQuantity(count + 1);
-  //   }
-  // };
-
-  // const handleClick = () => {
-  //   dispatch(addProduct({ ...product, quantity }));
-  // };
 
   return (
     <>
-      <div>
+      
         <div
           className="container-fluid d-flex"
           style={{ backgroundColor: "#bf2758" }}
@@ -127,139 +117,90 @@ const Cart = () => {
           </div>
         </div>
 
-        <section className="py-4 container">
-          <div className="row justify-content-center">
-            <div className="col-12 rounded-3">
-              <h5>Cart-Items: {cart.quantity}</h5>
-              <table className="table table-light table-hover  m-0">
-                <tbody>
-                  {cart.products.map((product, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>
-                          <img
-                            src={product.image}
-                            alt=""
-                            style={{
-                              objectFit: "contain",
-                              height: "6rem",
-                              width: "8rem",
-                            }}
-                          />
-                        </td>
-                        <td>{product.name}</td>
-                        <td>Rs.{product.price}</td>
-                        <td>Quantity:{product.quantity}</td>
-                        <td> Amount:{product.price * product.quantity}</td>
-                        <td>
+        {total === 0 ? (
+          <div className="row">
+            <div className="col-8 pt-5 ps-5">
+              <img
+                src="https://i.pinimg.com/originals/79/4a/5a/794a5a15694f30e60c858d0989c146a0.gif"
+                alt=""
+                width="600px"
+                height="400px"
+                className="img-fluid"
+              />
 
-                          {/* <div
-                            className="addContainer pb-2"
-                            style={{
-                              width: "50 %",
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            <div
-                              className="amountContainer"
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                fontWeight: "700px",
-                              }}
-                            >
-                              <button
-                                className="btn btn-danger ms-2 "
-                                style={{
-                                  borderRadius: "10px",
-                                }}
-                                onClick={() => handleQuantity("dec")}
-                              >
-                                -
-                              </button>
-                              <div
-                                className="btn ms-2"
-
-                              >
-                                {" "}
-                                {quantity}
-                              </div>
-                              <button
-                                className="btn btn-info ms-2 "
-                                style={{
-                                  borderRadius: "10px",
-                                }}
-                                onClick={() => handleQuantity("inc")}
-                              >
-                                +
-                              </button>
-                            </div>
-                          </div> */}
-
-                          {/* <button
-                        className="btn btn-info ms-2 "
-                      // onClick={() =>
-                      //   updateItemQuantity(product.id, product.quantity + 1)
-                      // }
-                      >
-                        +
-                      </button>
-                      <button
-                        className="btn btn-info ms-2 "
-                      // onClick={() =>
-                      //   updateItemQuantity(item.id, item.quantity - 1)
-                      // }
-                      >
-                        -
-                      </button> */}
-                          <button
-                            className="btn btn-danger ms-2 "
-                            onClick={() => handleRemove(index)}
-                          >
-                            <span
-                              class="iconify"
-                              data-icon="fluent:delete-16-filled"
-                              data-width="20"
-                            ></span>
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
             </div>
-
-            <div className="col-auto ms-auto">
-              <h2>Total Price:Rs.{cart.total}</h2>
-            </div>
-            <div className="col-auto">
-              {/* <button className="btn btn-danger m-2"
-                onClick={handleRemove}
-              >
-                {" "}
-                ClearCart
-              </button> */}
-
-              <StripeCheckout
-                name="Petti Shop"
-                image="./image/f.png"
-                billingAddress
-                shippingAddress
-                description={`Your total is  ₹ ${cart.total}`}
-                amount={cart.total * 100}
-                token={onToken}
-                currency="INR"
-                stripeKey={KEY}
-              >
-                <button className="btn btn-danger ms-2 ">Pay Now</button>
-              </StripeCheckout>
-            </div>
+            <div className="col-4 pt-5  mt-5 pe-2 text-center">
+            
+              <h1 className="fw-bold text-success"> Cart Is Empty !!!  Please,Fill Your Cart! </h1>
           </div>
-        </section>
-      </div>
+          </div>
+        ) :( 
+          <section className="py-4 container">
+            <div className="row justify-content-center">
+              <div className="col-12 rounded-3">
+                <h5>Cart-Items: {cart.quantity}</h5>
+                <table className="table table-light table-hover  m-0">
+                  <tbody>
+                    {cart.products.map((product, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>
+                            <img
+                              src={product.image}
+                              alt=""
+                              style={{
+                                objectFit: "contain",
+                                height: "6rem",
+                                width: "8rem",
+                              }}
+                            />
+                          </td>
+                          <td>{product.name}</td>
+                          <td>Rs.{product.price}</td>
+                          <td>Quantity:{product.quantity}</td>
+                          <td> Amount:{product.price * product.quantity}</td>
+                          <td>
+                            <button
+                              className="btn btn-danger ms-2 "
+                              onClick={() => handleRemove(index)}
+                            >
+                              <span
+                                class="iconify"
+                                data-icon="fluent:delete-16-filled"
+                                data-width="20"
+                              ></span>
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="col-auto ms-auto">
+                <h2>Total Price:Rs.{cart.total}</h2>
+              </div>
+              <div className="col-auto">
+                <StripeCheckout
+                  name="Petti Shop"
+                  image="./image/f.png"
+                  billingAddress
+                  shippingAddress
+                  description={`Your total is  ₹ ${cart.total}`}
+                  amount={cart.total * 100}
+                  token={onToken}
+                  currency="INR"
+                  stripeKey={KEY}
+                >
+                  <button className="btn btn-danger ms-2 ">Pay Now</button>
+                </StripeCheckout>
+              </div>
+            </div>
+          </section>
+        )
+        }
+      
     </>
   );
 };

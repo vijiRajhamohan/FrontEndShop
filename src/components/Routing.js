@@ -25,11 +25,8 @@ import ProductsAdmin from "../containers/Admin/ProductsAdmin";
 import { Update } from "../containers/Admin/Update";
 import AdminProducts from "../containers/Admin/AdminProducts";
 import OrdersAdmin from "../containers/Admin/OrdersAdmin";
-
 import UsersAdmin from "../containers/Admin/UsersAdmin";
 import { OrderAdminInfo } from "../containers/Admin/OrderAdminInfo";
-
-
 
 function routing() {
   return (
@@ -52,7 +49,7 @@ function routing() {
         <Route path={"/policy"} element={<Policy />} />
         <Route path={"/newPassword"} element={<NewPassword />} />
         <Route path={"/orderhistory"} element={<OrderHistory />} />
-        <Route path={"/userorderinfo/:id"} element={<UserOrderInfo />} /> 
+        <Route path={"/userorderinfo/:id"} element={<UserOrderInfo />} />
         <Route path={"/myprofile"} element={<MyProfile />} />
         <Route path={"/updateprofile/edit/:id"} element={<UpdateProfile />} />
 
@@ -62,9 +59,7 @@ function routing() {
         <Route path={"/adminproducts"} element={<AdminProducts />} />
         <Route path={"/usersadmin"} element={<UsersAdmin />} />
         <Route path={"/ordersadmin"} element={<OrdersAdmin />} />
-        <Route path={"/orderadmininfo/:id"} element={<OrderAdminInfo/> } /> 
-       
-       
+        <Route path={"/orderadmininfo/:id"} element={<OrderAdminInfo />} />
       </Routes>
     </div>
   );

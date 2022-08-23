@@ -8,7 +8,7 @@ import Navigation from "../components/Navigation";
 export function UserOrderInfo() {
     const { id } = useParams();
     const [orders, setOrders] = useState({});
-    //   const [isLoading, setIsLoading] = useState(true);
+    
 
     const getOrderInfo = async () => {
         try {
@@ -16,8 +16,8 @@ export function UserOrderInfo() {
                 `https://pettishopnew.herokuapp.com/api/order/${id}`
             );
             setOrders(data);
-            console.log(data);
-            //   setIsLoading(false);
+            
+          
         } catch (error) {
             console.log(error.message);
         }
@@ -26,12 +26,12 @@ export function UserOrderInfo() {
     useEffect(() => {
         getOrderInfo();
     }, [id]);
-    console.log(orders);
+    
     return (
         <div className="container">
             <Navigation />
             <h6 className="text-center text-danger fw-bold mt-3">
-                User Order details
+             Order details
             </h6>
             <div className="row table-responsive">
                 <table className="text-center table">

@@ -96,20 +96,6 @@ function Login() {
                       {errors.password}
                     </span>
                   ) : null}
-                  {/* submit button */}
-                  {/* <div className="d-flex justify-content-between align-items-center">
-                    <div className="form-check mb-0">
-                      <input
-                        className="form-check-input me-2"
-                        type="checkbox"
-                        id="form2Example3"
-                      />
-                      <label className="form-check-label">Remember me</label>
-                    </div>
-                    <Link to="/password" className="text-body">
-                      Forgot password?
-                    </Link>
-                  </div> */}
 
                   <div className="text-center text-lg-start mt-4 pt-2">
                     <button

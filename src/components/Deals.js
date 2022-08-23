@@ -24,8 +24,10 @@ const Deals = () => {
   };
 
   return (
-    <Box className="products ps-5">
-      <Box sx={{textAlign:"center",pt: 2}}><h1 >Deals & Offers</h1></Box>
+    <Box >
+      <Box sx={{textAlign:"center",pt: 2}}>
+        <h1 >Deals & Offers</h1>
+        </Box>
       <Box sx={{ paddingTop: 5, textAlign: "center" }}>
         <Carousel
           responsive={res}

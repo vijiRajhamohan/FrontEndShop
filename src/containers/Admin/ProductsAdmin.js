@@ -2,13 +2,13 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AdminNav from "../../components/AdminNav";
 import { useParams } from "react-router-dom";
 
 const ProductsAdmin = () => {
   const { id } = useParams();
-  const [food, setFood] = useState(null);
+  const [prod, setProd] = useState(null);
 
   // update  api call
   const update = async () => {
@@ -16,13 +16,12 @@ const ProductsAdmin = () => {
       const { data } = await axios.put(
         `https://pettishopnew.herokuapp.com/api/productsDetails/${id}`
       );
-      setFood(data);
+      setProd(data);
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  // useEffect use refresh data
   useEffect(() => {
     update();
   });
@@ -32,7 +31,9 @@ const ProductsAdmin = () => {
   // Get all Products
   const getProducts = async () => {
     try {
-      const res = await axios.get("https://pettishopnew.herokuapp.com/api/productsLists");
+      const res = await axios.get(
+        "https://pettishopnew.herokuapp.com/api/productsLists"
+      );
       setProducts(res.data);
       console.log(res.data);
     } catch {
@@ -47,9 +48,12 @@ const ProductsAdmin = () => {
   const deleteProduct = async ({ _id }) => {
     if (window.confirm(`Are You Sure You Want to Delete this Product ${_id}`)) {
       try {
-        await axios.delete(`https://pettishopnew.herokuapp.com/api/productsDetails/${_id}`, {
-          _id,
-        });
+        await axios.delete(
+          `https://pettishopnew.herokuapp.com/api/productsDetails/${_id}`,
+          {
+            _id,
+          }
+        );
         alert("Deleted Successfully");
         getProducts();
       } catch (error) {
@@ -96,7 +100,6 @@ const ProductsAdmin = () => {
                             color="blue"
                           ></span>
                         </button>
-                       
                         <span>
                           {" "}
                           <button
@@ -111,8 +114,6 @@ const ProductsAdmin = () => {
                         </span>{" "}
                       </div>
                     </td>
-
-                  
                   </tr>
                 );
               })}

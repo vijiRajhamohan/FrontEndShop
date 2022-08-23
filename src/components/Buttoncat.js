@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { categories } from "../data";
 function Buttoncat() {
   return (
-    <div >
+    <div>
       <div
         className="a-section a-spacing-small  pb-3 text-center"
         style={{

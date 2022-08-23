@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+
 function Navigation() {
-  // authToken get form localStorage
   const email = window.localStorage.getItem("email");
   const navigate = useNavigate();
   const quantity = useSelector((state) => state.cart.quantity);
@@ -33,7 +33,7 @@ function Navigation() {
                     height="50"
                     className="d-inline-block "
                   />
-                  
+
                   <span style={{ fontSize: "28px", fontStyle: "italic" }}>
                     PETTI SHOP
                   </span>
@@ -85,7 +85,7 @@ function Navigation() {
                       role="button"
                       aria-expanded="false"
                     >
-                     {email}
+                      {email}
                     </Link>
                     <ul className="dropdown-menu">
                       <li>

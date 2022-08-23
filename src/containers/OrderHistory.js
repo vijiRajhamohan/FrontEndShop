@@ -8,16 +8,9 @@ export default function OrderHistory() {
   // authToken
   const accessToken = window.localStorage.getItem("accessToken");
 
- 
   const navigate = useNavigate();
 
   const [myOrders, setMyOrders] = useState([]);
-
-
-  // const [query, setQuery] = useState("");
-
-  // Initial Loading Page
-  // const [isLoading, setIsLoading] = useState(true);
 
   // get userById from authToken
   function parseJwt(token) {
@@ -42,14 +35,11 @@ export default function OrderHistory() {
         `https://pettishopnew.herokuapp.com/api/order/find/${userId}`
       );
       setMyOrders(data);
-      //   console.log(data);
-      // setIsLoading(false);
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  // Call function useEffect
   useEffect(() => {
     getUserById();
   }, []);
@@ -68,32 +58,15 @@ export default function OrderHistory() {
               <th>Action</th>
             </tr>
           </thead>
-          <div className="text-center">
-            {" "}
-            {/* {isLoading && (
-              <div className="text-center">
-                <img
-                  className="text-center"
-                  src="https://i.stack.imgur.com/hzk6C.gif"
-                  alt=""
-                />
-              </div>
-            )} */}
-          </div>
+          
           <tbody>
             {myOrders.map((u, index) => {
               return (
                 <tr key={index}>
                   <td>{u._id}</td>
-                  {/* <td>{u.userId}</td> */}
-                  {/* <td>{u.product[0]._id}</td>
-                                    <td>{u.product[0].category }</td>
-                                    <td>{u.product[0].quantity}</td>
-                                    <td>{u.product[0].price}</td> */}
                   <td>{u.total}</td>
                   <td>deliverded</td>
-
-                  <td className="d-flex gap-2 justify-content-center">
+                  <td >
                     <button
                       className="btn btn-outline-white border-0"
                       onClick={() => navigate("/userorderinfo/" + u._id)}
@@ -108,48 +81,9 @@ export default function OrderHistory() {
               );
             })}
           </tbody>
+         
         </table>
       </div>
     </>
   );
 }
-
-// import React from 'react'
-// import Navigation from '../components/Navigation'
-// import axios from "axios";
-// function OrderHistory() {
-//   return (
-//     <div>
-//           <Navigation />
-//           <div className="container p-3 m-3 mx-auto d-flex justify-content-center">
-//               <table className="table">
-//                   <thead>
-//                       <tr>
-//                           <th>UserId</th>
-//                           <th>OrderId</th>
-//                           <th>ProductName</th>
-//                           <th>Quantity</th>
-//                           <th>Price</th>
-//                           <th>Address</th>
-//                           <th>Status</th>
-//                       </tr>
-//                   </thead>
-//                   <tbody>
-//                       <tr>
-//                           {/* <td>{order.user._id}</td>
-//               <td>{order.order._id}</td>
-//               <td>{order.productName}</td>
-//               <td>{order.quantity}</td>
-//               <td>{order.price}</td>
-//               <td>{order.address}</td>
-//               <td>Delivered</td> */}
-//                       </tr>
-//                   </tbody>
-//               </table>
-//           </div>
-//       </div>
-
-//   )
-// }
-
-// export default OrderHistory

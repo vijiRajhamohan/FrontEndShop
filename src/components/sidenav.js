@@ -16,7 +16,7 @@ function sidenav() {
         <div>
           <div className="pt-5 ">
             {categories.map((item) => (
-              <ul style={{ listStyleType: "none" ,fontSize:"20px"}}>
+              <ul style={{ listStyleType: "none", fontSize: "20px" }}>
                 <li className="cat-item ">
                   <Link to={`/productsList/${item.cat}`}>
                     <i class="bx bxs-hand-right">{item.cat}</i>
@@ -25,10 +25,8 @@ function sidenav() {
               </ul>
             ))}
           </div>
-          {/* // <SideNav /> */}
         </div>
       </div>
-      {/* <hr />  */}
     </div>
   );
 }

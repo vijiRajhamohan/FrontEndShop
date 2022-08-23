@@ -6,31 +6,34 @@ import "./Table.css";
 
 const UserAdmin = () => {
   const [users, setUsers] = useState({});
-  
-    const getUsers = async () => {
-      try {
-        const res = await axios.get("https://pettishopnew.herokuapp.com/api/user/find");
 
-        setUsers(res.data);
-        console.log(res.data);
-      } catch {
-        console.error(500);
-      }
-    };
-   
-  
+  const getUsers = async () => {
+    try {
+      const res = await axios.get(
+        "https://pettishopnew.herokuapp.com/api/user/find"
+      );
+
+      setUsers(res.data);
+      console.log(res.data);
+    } catch {
+      console.error(500);
+    }
+  };
+
   useEffect(() => {
     getUsers();
   }, []);
-
 
   // Delete user
   const deleteUser = async ({ _id }) => {
     if (window.confirm(`Are You Sure You Want to Delete user ${_id}`)) {
       try {
-        await axios.delete(`https://pettishopnew.herokuapp.com/api/user/${_id}`, {
-          _id,
-        });
+        await axios.delete(
+          `https://pettishopnew.herokuapp.com/api/user/${_id}`,
+          {
+            _id,
+          }
+        );
         alert("Deleted Successfully");
         getUsers();
       } catch (error) {
@@ -70,17 +73,15 @@ const UserAdmin = () => {
                     <td>
                       <td>
                         <div>
-                         
-                            <button
-                              onClick={() => deleteUser(u)}
-                              className="btn btn-danger btn-sm"
-                            >
-                              <span
-                                className="iconify"
-                                data-icon="fluent:delete-32-filled"
-                              ></span>
-                            </button>
-                          
+                          <button
+                            onClick={() => deleteUser(u)}
+                            className="btn btn-danger btn-sm"
+                          >
+                            <span
+                              className="iconify"
+                              data-icon="fluent:delete-32-filled"
+                            ></span>
+                          </button>
                         </div>
                       </td>
                     </td>

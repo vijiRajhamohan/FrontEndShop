@@ -24,7 +24,7 @@ function Recent() {
   };
   return (
     <>
-      <Box className="recent">
+      <Box >
         <Box sx={{ padding: 2, textAlign: "center", pt: 2 }}>
           <h1> Recently viewed Items </h1>
         </Box>

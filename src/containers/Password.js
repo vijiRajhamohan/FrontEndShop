@@ -58,7 +58,7 @@ function Password() {
               </div>
               <div className="card-footer">
                 <button className="btn btn-success" type="submit">
-                  Get New Password
+                  Reset Password
                 </button>
                 <Link to="/login" className="btn btn-danger" type="button">
                   Back to Login

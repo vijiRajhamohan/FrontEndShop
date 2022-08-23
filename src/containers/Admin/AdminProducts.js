@@ -1,25 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
 import AdminNav from "../../components/AdminNav";
+
 function AdminProducts() {
-  // state management
   const [base64code, setbase64code] = useState("");
   const [img, setImg] = useState("");
 
-  // image handle function
   const imghandleSubmit = (e) => {
     const files = e.target.files;
     const file = files[0];
     getBase64(file);
   };
 
-  // image to string converted function
   const onLoad = (fileString) => {
     setImg(fileString);
     setbase64code = fileString;
   };
 
-  // Image file reader function
   const getBase64 = (file) => {
     let reader = new FileReader();
     reader.readAsDataURL(file);
@@ -60,7 +57,6 @@ function AdminProducts() {
       <div className="container my-5">
         <div className="row">
           <div className="col-sm-6">
-            {/* <div className="col-md-6 col-lg-6 col-xl-5"> */}
             <img
               src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
               alt=""
@@ -83,27 +79,29 @@ function AdminProducts() {
                   >
                     <div className="mb-3">
                       <div className="row">
-
                         <div className="mb-4 mx-auto  ">
                           <input type="file" onChange={imghandleSubmit} />
-                         <label
+                          <label
                             htmlfor="image"
                             className="form-label"
                             style={{ fontSize: 15, fontFamily: "monospace" }}
                           >
                             Image
                           </label>
-                          <span>  <input
-                            type="text"
-                            style={{ fontSize: 14 }}
-                            name="image"
-                            onChange={handleChange}
-                            value={img}
-                            placeholder="Image"
-                            className="form-control "
-                            id="image"
-                            required
-                            /></span>
+                          <span>
+                            {" "}
+                            <input
+                              type="text"
+                              style={{ fontSize: 14 }}
+                              name="image"
+                              onChange={handleChange}
+                              value={img}
+                              placeholder="Image"
+                              className="form-control "
+                              id="image"
+                              required
+                            />
+                          </span>
                         </div>
                         <div className="mb-4 row mx-auto ">
                           <label
@@ -132,7 +130,7 @@ function AdminProducts() {
                             <option value="PoojaItems">PoojaItems</option>
                           </select>
                         </div>
-                        
+
                         <div className="mb-4">
                           <div className="row">
                             <div className="col">

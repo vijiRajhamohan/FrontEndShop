@@ -25,7 +25,7 @@ const CategoryItem = () => {
 
   return (
     <Box className="products ps-5">
-      <Box sx={{padding: 2, textAlign: "center" }}>
+      <Box sx={{ padding: 2, textAlign: "center" }}>
         <Carousel
           responsive={res}
           draggable={true}
@@ -45,7 +45,6 @@ const CategoryItem = () => {
                     width: "300px",
                     height: "150px",
                     borderRadius: "150px",
-                    
                   }}
                 />
               </Link>
