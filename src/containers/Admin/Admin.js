@@ -44,7 +44,7 @@ function Admin() {
                     "https://pettishopnew.herokuapp.com/api/admin/login";
                   const { data } = await axios.post(url, values);
 
-                  window.localStorage.setItem("accessToken", data);
+                  window.localStorage.setItem("adminToken", data);
                   window.localStorage.setItem("email", values.email);
                   navigate("/productsadmin");
                   alert("loggedin successfully");

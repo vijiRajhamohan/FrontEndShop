@@ -12,7 +12,7 @@ function Products() {
   const [product, setProduct] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [query, setQuery] = useState("");
-
+  const Uauth = window.localStorage.getItem('accessToken')
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -20,7 +20,11 @@ function Products() {
           cat
             ? `https://pettishopnew.herokuapp.com/api/productsList?category=${cat}`
             : "https://pettishopnew.herokuapp.com/api/productsLists"
-        );
+          ,
+          {
+            headers: {
+              "Authorization": `Bearer ${Uauth}`
+            }});
         setProduct(res.data);
       } catch (err) {
         console.log(err.message);
@@ -68,77 +72,77 @@ function Products() {
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 py-5 px-3 g-5">
                   {cat
                     ? filteredProducts
-                        .filter((g) => g.name.toLowerCase().includes(query))
-                        .map((product) => (
-                          <div
-                            className="card m-1 pb-5 bd-highlight border-white shadow-lg bg-body rounded  justify-content-between "
-                            style={{ width: "15rem", height: "20rem" }}
-                          >
-                            <Link to={`/productsDetails/${product._id}`}>
-                              <img
-                                src={product.image}
-                                alt=""
-                                className="card-img-top"
-                                style={{
-                                  height: "8rem",
-                                  objectFit: "contain",
-                                  marginTop: "10px",
-                                }}
-                              />
+                      .filter((g) => g.name.toLowerCase().includes(query))
+                      .map((product) => (
+                        <div
+                          className="card m-1 pb-5 bd-highlight border-white shadow-lg bg-body rounded  justify-content-between "
+                          style={{ width: "15rem", height: "20rem" }}
+                        >
+                          <Link to={`/productsDetails/${product._id}`}>
+                            <img
+                              src={product.image}
+                              alt=""
+                              className="card-img-top"
+                              style={{
+                                height: "8rem",
+                                objectFit: "contain",
+                                marginTop: "10px",
+                              }}
+                            />
 
-                              <div className="card-body ">
-                                <h5 className="card-title">{product.name}</h5>
-                                <h5 className="card-text">
-                                  {product.quantity}
-                                </h5>
-                                <p className="card-text">
-                                  <span>MRP Rs.</span> {""}
-                                  {product.price}
-                                </p>
-                              </div>
+                            <div className="card-body ">
+                              <h5 className="card-title">{product.name}</h5>
+                              <h5 className="card-text">
+                                {product.quantity}
+                              </h5>
+                              <p className="card-text">
+                                <span>MRP Rs.</span> {""}
+                                {product.price}
+                              </p>
+                            </div>
 
-                              <button className="btn btn-success">
-                                Buy Now
-                              </button>
-                            </Link>
-                          </div>
-                        ))
+                            <button className="btn btn-success">
+                              Buy Now
+                            </button>
+                          </Link>
+                        </div>
+                      ))
                     : product
-                        .filter((g) => g.name.toLowerCase().includes(query))
-                        .map((product) => (
-                          <div
-                            className="card m-1 pb-5 bd-highlight border-white shadow-lg bg-body rounded  justify-content-between"
-                            style={{ width: "15rem", height: "20rem" }}
-                          >
-                            <Link to={`/productsDetails/${product._id}`}>
-                              <img
-                                src={product.image}
-                                alt=""
-                                className="card-img-top"
-                                style={{
-                                  height: "9rem",
-                                  objectFit: "contain",
-                                  marginTop: "10px",
-                                }}
-                              />
+                      .filter((g) => g.name.toLowerCase().includes(query))
+                      .map((product) => (
+                        <div
+                          className="card m-1 pb-5 bd-highlight border-white shadow-lg bg-body rounded  justify-content-between"
+                          style={{ width: "15rem", height: "20rem" }}
+                        >
+                          <Link to={`/productsDetails/${product._id}`}>
+                            <img
+                              src={product.image}
+                              alt=""
+                              className="card-img-top"
+                              style={{
+                                height: "9rem",
+                                objectFit: "contain",
+                                marginTop: "10px",
+                              }}
+                            />
 
-                              <div className="card-body ">
-                                <h5 className="card-title">{product.name}</h5>
-                                <h5 className="card-text">
-                                  {product.quantity}
-                                </h5>
-                                <p className="card-text">
-                                  <span>MRP Rs.</span> {""}
-                                  {product.price}
-                                </p>
-                              </div>
+                            <div className="card-body ">
+                              <h5 className="card-title">{product.name}</h5>
+                              <h5 className="card-text">
+                                {product.quantity}
+                              </h5>
+                              <p className="card-text">
+                                <span>MRP Rs.</span> {""}
+                                {product.price}
+                              </p>
+                            </div>
 
-                              <button className="btn btn-success">
-                                Buy Now
-                              </button>
-                            </Link>
-                          </div>
-                        ))}
+                            <button className="btn btn-success">
+                              Buy Now
+                            </button>
+                          </Link>
+                        </div>
+                      ))}
                 </div>
               </div>
             </div>
