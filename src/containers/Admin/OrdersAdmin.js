@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 import AdminNav from "../../components/AdminNav";
 
 const OrdersAdmin = () => {
+  const adminToken = window.localStorage.getItem('adminToken')
   const navigate = useNavigate();
-  const accessToken = window.localStorage.getItem("accessToken");
+  
 
   const [orders, setOrder] = useState({});
 
@@ -16,7 +17,7 @@ const OrdersAdmin = () => {
         "https://pettishopnew.herokuapp.com/api/order",
         {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer ${adminToken}`,
           },
         }
       );

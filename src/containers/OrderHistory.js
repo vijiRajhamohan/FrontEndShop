@@ -13,26 +13,31 @@ export default function OrderHistory() {
   const [myOrders, setMyOrders] = useState([]);
 
   // get userById from authToken
-  function parseJwt(token) {
-    var base64Url = token.split(".")[1];
-    var base64 = decodeURIComponent(
-      atob(base64Url)
-        .split("")
-        .map((c) => {
-          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-        })
-        .join("")
-    );
-    return JSON.parse(base64);
-  }
-  let a = parseJwt(accessToken);
-  let userId = a._id;
+  // function parseJwt(token) {
+  //   var base64Url = token.split(".")[1];
+  //   var base64 = decodeURIComponent(
+  //     atob(base64Url)
+  //       .split("")
+  //       .map((c) => {
+  //         return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+  //       })
+  //       .join("")
+  //   );
+  //   return JSON.parse(base64);
+  // }
+  // let a = parseJwt(accessToken);
+  // let userId = a._id;
 
   // get userById Orders
   const getUserById = async () => {
     try {
       const { data } = await axios.get(
-        `https://pettishopnew.herokuapp.com/api/order/find/${userId}`
+        `https://pettishopnew.herokuapp.com/api/order/find/id`,
+        {
+          headers: {
+            "Authorization": `Bearer ${accessToken}`
+          }
+        }
       );
       setMyOrders(data);
     } catch (error) {

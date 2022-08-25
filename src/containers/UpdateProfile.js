@@ -9,11 +9,16 @@ import axios from "axios";
 function UpdateProfile() {
   const { id } = useParams();
   const [profile, setProfile] = useState(null);
-
+  const accessToken = window.localStorage.getItem("accessToken");
   const editprofile = async () => {
     try {
       const { data } = await axios.get(
-        `https://pettishopnew.herokuapp.com/api/user/find/${id}`
+        `https://pettishopnew.herokuapp.com/api/user/find/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
       );
       setProfile(data);
       console.log(data);
@@ -23,21 +28,22 @@ function UpdateProfile() {
   };
   useEffect(() => {
     editprofile();
-  });
+  },[]);
   return (
     <div className="container">
       {profile ? (
         <EditUpdateForm profile={profile} />
       ) : (
         <div className="progress mt-3">
-          <div
+            <h1>Loading....</h1> 
+          {/* <div
             className="progress-bar progress-bar-striped progress-bar-animated"
             role="progressbar"
             aria-valuenow="75"
             aria-valuemin="0"
             aria-valuemax="100"
             style={{ width: "75%" }}
-          ></div>
+          ></div> */}
         </div>
       )}
     </div>
@@ -45,8 +51,8 @@ function UpdateProfile() {
 }
 export function EditUpdateForm({ profile }) {
   const navigate = useNavigate();
-
-  // const [base64code, setbase64code] = useState("");
+  const accessToken = window.localStorage.getItem("accessToken");
+ 
 
   const [name, setName] = useState(profile.name);
   const [email, setEmail] = useState(profile.email);
@@ -55,7 +61,7 @@ export function EditUpdateForm({ profile }) {
   const [pincode, setPincode] = useState(profile.pincode);
 
   // edit profile update form and api call
-  const editprofile = () => {
+  const editprofile = async () => {
     const updateProfile = {
       name: name,
       email: email,
@@ -63,13 +69,13 @@ export function EditUpdateForm({ profile }) {
       address: address,
       pincode: pincode,
     };
-    fetch(`https://pettishopnew.herokuapp.com/api/user/find/${profile._id}`, {
-      method: "PUT",
-      body: JSON.stringify(updateProfile),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(() => navigate("/myprofile"));
+     await axios.put(`https://pettishopnew.herokuapp.com/api/user/find/${profile._id}`,updateProfile,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+    
+      }).then(() => navigate("/myprofile"));
   };
 
   return (

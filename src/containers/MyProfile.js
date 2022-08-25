@@ -4,37 +4,20 @@ import Navigation from "../components/Navigation";
 import axios from "axios";
 
 export default function UserProfile() {
-  // const [base64code, setbase64code] = useState("");
-
   const navigate = useNavigate();
-
   const [users, setUsers] = useState([]);
-
-  // authtoken localStorage
   const accessToken = window.localStorage.getItem("accessToken");
-
-  // get Id from accessToken
-  function parseJwt(token) {
-    var base64Url = token.split(".")[1];
-    var base64 = decodeURIComponent(
-      atob(base64Url)
-        .split("")
-        .map((c) => {
-          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-        })
-        .join("")
-    );
-    return JSON.parse(base64);
-  }
-
-  let a = parseJwt(accessToken);
-  let userId = a._id;
 
   // get user details and api call
   const getUserProfile = async () => {
     try {
       const { data } = await axios.get(
-        `https://pettishopnew.herokuapp.com/api/user/find/${userId}`
+        `https://pettishopnew.herokuapp.com/api/user/find/id`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
       );
       setUsers(data);
     } catch (error) {
@@ -85,7 +68,6 @@ export default function UserProfile() {
                   <span className="text-secondary">{users.pincode} </span>
                 </h5>
               </div>
-              {/*Edit  profile */}
 
               <button
                 className="btn btn-info "

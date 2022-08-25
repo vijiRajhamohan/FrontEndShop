@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import AdminNav from "../../components/AdminNav";
 
 export function OrderAdminInfo() {
+    const adminToken = window.localStorage.getItem('adminToken');
     const { id } = useParams();
     const [orders, setOrders] = useState({});
   
@@ -13,7 +14,11 @@ export function OrderAdminInfo() {
     const getOrderInfo = async () => {
         try {
             const { data } = await axios.get(
-                `https://pettishopnew.herokuapp.com/api/order/${id}`
+                `https://pettishopnew.herokuapp.com/api/order/${id}`, {
+                headers: {
+                        "Authorization": `Bearer ${adminToken}`
+                }
+            }
             );
             setOrders(data);
             console.log(data);
@@ -26,7 +31,6 @@ export function OrderAdminInfo() {
     useEffect(() => {
         getOrderInfo();
     }, [id]);
-    console.log(orders);
     return (
         <div className="container">
             <AdminNav />

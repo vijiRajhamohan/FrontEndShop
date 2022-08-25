@@ -1,30 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
-
 import { useNavigate } from "react-router-dom";
 import AdminNav from "../../components/AdminNav";
-import { useParams } from "react-router-dom";
+
 
 const ProductsAdmin = () => {
-  const { id } = useParams();
-  const [prod, setProd] = useState(null);
-
-  // update  api call
-  const update = async () => {
-    try {
-      const { data } = await axios.put(
-        `https://pettishopnew.herokuapp.com/api/productsDetails/${id}`
-      );
-      setProd(data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  useEffect(() => {
-    update();
-  });
+  const adminToken = window.localStorage.getItem('adminToken')
+ 
   const navigate = useNavigate();
   const [products, setProducts] = useState({});
 
@@ -32,7 +15,11 @@ const ProductsAdmin = () => {
   const getProducts = async () => {
     try {
       const res = await axios.get(
-        "https://pettishopnew.herokuapp.com/api/productsLists"
+        "https://pettishopnew.herokuapp.com/api/productsLists", {
+        headers: {
+            "Authorization": `Bearer ${adminToken}`
+        }
+      }
       );
       setProducts(res.data);
       console.log(res.data);

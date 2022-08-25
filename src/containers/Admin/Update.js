@@ -6,15 +6,18 @@ import AdminNav from "../../components/AdminNav";
 import { useParams } from "react-router-dom";
 
 export function Update() {
- 
+  const adminToken = window.localStorage.getItem('adminToken');
   const { id } = useParams();
   const [prod, setProd] = useState(null);
 
   const update = async () => {
     try {
       const { data } = await axios.get(
-        `https://pettishopnew.herokuapp.com/api/productsLists/${id}`
-      );
+        `https://pettishopnew.herokuapp.com/api/productsLists/${id}`, {
+        headers: {
+            Authorization: `Bearer ${adminToken}`
+      }
+    });
       setProd(data);
     } catch (error) {
       console.log(error.message);
@@ -23,7 +26,7 @@ export function Update() {
 
   useEffect(() => {
     update();
-  });
+  },[]);
 
   return (
     <div className="container">
@@ -31,14 +34,8 @@ export function Update() {
         <EditProduct prod={prod} />
       ) : (
         <div className="progress mt-3">
-          <div
-            className="progress-bar progress-bar-striped progress-bar-animated"
-            role="progressbar"
-            aria-valuenow="75"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            style={{ width: "75%" }}
-          ></div>
+         <h1>Loading....</h1> 
+        
         </div>
       )}
     </div>
@@ -46,6 +43,7 @@ export function Update() {
 }
 
 export function EditProduct({ prod }) {
+  const adminToken = window.localStorage.getItem('adminToken')
   const navigate = useNavigate();
 
   const [base64code, setbase64code] = useState("");
@@ -76,7 +74,7 @@ export function EditProduct({ prod }) {
   const [quantity, setQuantity] = useState(prod.quantity);
   const [price, setPrice] = useState(prod.price);
 
-  const update = () => {
+  const update = async () => {
     const updateProduct = {
       image: img,
       category: category,
@@ -84,17 +82,15 @@ export function EditProduct({ prod }) {
       quantity: quantity,
       price: price,
     };
-    fetch(
-      `https://pettishopnew.herokuapp.com/api/productsDetails/${prod._id}`,
+    await axios.put(`https://pettishopnew.herokuapp.com/api/productsDetails/${prod._id}`, updateProduct,
       {
-        method: "PUT",
-        body: JSON.stringify(updateProduct),
         headers: {
-          "Content-Type": "application/json",
+          "Authorization": `Bearer ${adminToken}`,
         },
-      }
-    ).then(() => navigate("/productsadmin"));
+
+      }).then(() => navigate("/productsadmin"));
   };
+  
 
   return (
     <div>

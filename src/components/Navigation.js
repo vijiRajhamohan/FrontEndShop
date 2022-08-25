@@ -10,7 +10,7 @@ function Navigation() {
   const quantity = useSelector((state) => state.cart.quantity);
   const Logout = () => {
     window.localStorage.clear();
-    navigate("/login");
+    navigate("/landing");
     swal("Thank you,Welcome!");
   };
   return (
@@ -105,7 +105,7 @@ function Navigation() {
                       <li>
                         <Link
                           className="dropdown-item"
-                          to="/login"
+                          to="/landing"
                           onClick={Logout}
                         >
                           Logout

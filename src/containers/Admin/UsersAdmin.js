@@ -5,12 +5,17 @@ import AdminNav from "../../components/AdminNav";
 import "./Table.css";
 
 const UserAdmin = () => {
+  const adminToken = window.localStorage.getItem('adminToken')
   const [users, setUsers] = useState({});
 
   const getUsers = async () => {
     try {
       const res = await axios.get(
-        "https://pettishopnew.herokuapp.com/api/user/find"
+        "https://pettishopnew.herokuapp.com/api/user/find", {
+        headers: {
+            "Authorization": `Bearer ${adminToken}`
+        }
+      }
       );
 
       setUsers(res.data);
@@ -29,7 +34,11 @@ const UserAdmin = () => {
     if (window.confirm(`Are You Sure You Want to Delete user ${_id}`)) {
       try {
         await axios.delete(
-          `https://pettishopnew.herokuapp.com/api/user/${_id}`,
+          `https://pettishopnew.herokuapp.com/api/user/${_id}`, {
+          headers: {
+            "Authorization": `Bearer ${adminToken}`
+          }
+        },
           {
             _id,
           }

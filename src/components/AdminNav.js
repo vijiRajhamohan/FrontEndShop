@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 function AdminNav() {
+  const Logout = () => {
+    window.localStorage.clear();
+    navigate("/landing");
+   
+  };
   return (
     <div className="row">
       <nav className="navbar navbar-expand-lg navbar-dark  ">
@@ -67,6 +72,15 @@ function AdminNav() {
                 <li className="nav-item">
                   <Link to="/adminproducts" className="nav-link active">
                     Add Products
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="dropdown-item"
+                    to="/landing"
+                    onClick={Logout}
+                  >
+                    Logout
                   </Link>
                 </li>
               </ul>

@@ -3,6 +3,9 @@ import axios from "axios";
 import AdminNav from "../../components/AdminNav";
 
 function AdminProducts() {
+  const adminToken = window.localStorage.getItem('adminToken');
+
+
   const [base64code, setbase64code] = useState("");
   const [img, setImg] = useState("");
 
@@ -41,8 +44,12 @@ function AdminProducts() {
   const handlesubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "https://pettishopnew.herokuapp.com/api/products";
-      const res = await axios.post(url, user);
+
+      const res = await axios.post("https://pettishopnew.herokuapp.com/api/products", user, {
+        headers: {
+          "Authorization": `Bearer ${adminToken}`
+        }
+      });
       console.log(res);
       alert("Products added successfully");
     } catch (err) {

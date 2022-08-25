@@ -40,11 +40,8 @@ function Admin() {
               validationSchema={adminLoginSchema}
               onSubmit={async (values) => {
                 try {
-                  const url =
-                    "https://pettishopnew.herokuapp.com/api/admin/login";
-                  const { data } = await axios.post(url, values);
-
-                  window.localStorage.setItem("adminToken", data);
+            const { data } = await axios.post("https://pettishopnew.herokuapp.com/api/admin/login", values);
+               window.localStorage.setItem("adminToken", data);
                   window.localStorage.setItem("email", values.email);
                   navigate("/productsadmin");
                   alert("loggedin successfully");

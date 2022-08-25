@@ -12,7 +12,7 @@ function Products() {
   const [product, setProduct] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [query, setQuery] = useState("");
-  const Uauth = window.localStorage.getItem('accessToken')
+  const accessToken = window.localStorage.getItem('accessToken')
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -23,7 +23,7 @@ function Products() {
           ,
           {
             headers: {
-              "Authorization": `Bearer ${Uauth}`
+              "Authorization": `Bearer ${accessToken}`
             }});
         setProduct(res.data);
       } catch (err) {

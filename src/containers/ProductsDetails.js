@@ -7,6 +7,7 @@ import axios from "axios";
 
 const ProductsDetails = () => {
   const location = useLocation();
+  const accessToken = window.localStorage.getItem('accessToken')
   const path = location.pathname.split("/")[2];
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
@@ -16,8 +17,12 @@ const ProductsDetails = () => {
     const getProducts = async () => {
       try {
         const res = await axios.get(
-          "https://pettishopnew.herokuapp.com/api/productsLists/" + path
-        );
+          "https://pettishopnew.herokuapp.com/api/productsLists/" + path,
+        {
+            headers: {
+            "Authorization": `Bearer ${accessToken}`
+            }
+          });
         setProduct(res.data);
         console.log(res.data);
       } catch (err) {}
