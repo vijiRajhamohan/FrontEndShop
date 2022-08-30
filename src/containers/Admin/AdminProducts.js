@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import AdminNav from "../../components/AdminNav";
-
+import { useNavigate } from "react-router-dom";
 function AdminProducts() {
-  const adminToken = window.localStorage.getItem('adminToken');
-
-
+  const adminToken = window.localStorage.getItem("adminToken");
+  const navigate = useNavigate();
   const [base64code, setbase64code] = useState("");
   const [img, setImg] = useState("");
 
@@ -29,8 +28,6 @@ function AdminProducts() {
   };
 
   const [user, setUser] = React.useState({
-    image: img,
-    id: "",
     category: "",
     name: "",
     quantity: "",
@@ -44,13 +41,24 @@ function AdminProducts() {
   const handlesubmit = async (e) => {
     e.preventDefault();
     try {
-
-      const res = await axios.post("https://pettishopnew.herokuapp.com/api/products", user, {
-        headers: {
-          "Authorization": `Bearer ${adminToken}`
+      const formValues = {
+        image: img,
+        category: user.category,
+        name: user.name,
+        quantity: user.quantity,
+        price: user.price,
+      };
+      console.log(formValues);
+      const res = await axios.post(
+        "https://pettishopnew.herokuapp.com/api/products",
+        formValues,
+        {
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
         }
-      });
-      console.log(res);
+      ).then(() => navigate("/productsadmin"));
+      
       alert("Products added successfully");
     } catch (err) {
       console.log(err.message);
@@ -87,7 +95,6 @@ function AdminProducts() {
                     <div className="mb-3">
                       <div className="row">
                         <div className="mb-4 mx-auto  ">
-                          <input type="file" onChange={imghandleSubmit} />
                           <label
                             htmlfor="image"
                             className="form-label"
@@ -95,20 +102,11 @@ function AdminProducts() {
                           >
                             Image
                           </label>
-                          <span>
-                            {" "}
-                            <input
-                              type="text"
-                              style={{ fontSize: 14 }}
-                              name="image"
-                              onChange={handleChange}
-                              value={img}
-                              placeholder="Image"
-                              className="form-control "
-                              id="image"
-                              required
-                            />
-                          </span>
+                          <input
+                            type="file"
+                            className="form-control"
+                            onChange={imghandleSubmit}
+                          />
                         </div>
                         <div className="mb-4 row mx-auto ">
                           <label
@@ -138,32 +136,31 @@ function AdminProducts() {
                           </select>
                         </div>
 
+                        <div className="mb-4 row mx-auto ">
+                          <label
+                            htmlfor="name"
+                            className="form-label"
+                            style={{
+                              fontSize: 15,
+                              fontFamily: "monospace",
+                            }}
+                          >
+                            ProductName
+                          </label>
+                          <input
+                            type="text"
+                            style={{ fontSize: 14 }}
+                            name="name"
+                            onChange={handleChange}
+                            value={user.name}
+                            placeholder="Name"
+                            className="form-control my-1 p-1"
+                            id="name"
+                            required
+                          />
+                        </div>
                         <div className="mb-4">
                           <div className="row">
-                            <div className="col">
-                              <label
-                                htmlfor="name"
-                                className="form-label"
-                                style={{
-                                  fontSize: 15,
-                                  fontFamily: "monospace",
-                                }}
-                              >
-                                ProductName
-                              </label>
-                              <input
-                                type="text"
-                                style={{ fontSize: 14 }}
-                                name="name"
-                                onChange={handleChange}
-                                value={user.name}
-                                placeholder="Name"
-                                className="form-control my-1 p-1"
-                                id="name"
-                                required
-                              />
-                            </div>
-
                             <div className="col">
                               <label
                                 htmlfor="quantity"

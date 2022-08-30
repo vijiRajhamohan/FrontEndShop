@@ -68,7 +68,7 @@ export function EditProduct({ prod }) {
     };
   };
 
-  const [image, setImage] = useState(prod.image);
+
   const [category, setCategory] = useState(prod.category);
   const [name, setName] = useState(prod.name);
   const [quantity, setQuantity] = useState(prod.quantity);
@@ -111,14 +111,14 @@ export function EditProduct({ prod }) {
                   <h2 style={{ color: "black", fontFamily: "timesnewroman" }}>
                     ProductDetails
                   </h2>
-                  <input type="file" onChange={imghandleSubmit} />
-                  <input
-                    className="mt-2 form-control"
-                    value={img}
-                    type="text"
-                    placeholder="image"
-                    onChange={(event) => setImage(event.target.value)}
-                  />
+                  <label
+                    htmlfor="image"
+                    className="form-label"
+                    style={{ fontSize: 15, fontFamily: "monospace" }}
+                  >
+                    Image
+                  </label> 
+                  <input type="file" className="form-control" onChange={imghandleSubmit} />
                   <input
                     className="mt-2 form-control"
                     value={name}

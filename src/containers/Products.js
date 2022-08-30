@@ -80,7 +80,7 @@ function Products() {
                         >
                           <Link to={`/productsDetails/${product._id}`}>
                             <img
-                              src={product.image}
+                              src={product.image?.url}
                               alt=""
                               className="card-img-top"
                               style={{
@@ -116,7 +116,7 @@ function Products() {
                         >
                           <Link to={`/productsDetails/${product._id}`}>
                             <img
-                              src={product.image}
+                              src={product.image?.url}
                               alt=""
                               className="card-img-top"
                               style={{

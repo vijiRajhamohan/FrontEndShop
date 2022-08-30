@@ -47,13 +47,13 @@ const ProductsDetails = () => {
       <div className="container ">
         <div
           className="card m-5 p-5 bd-highlight border-white shadow-lg bg-body rounded mx-auto"
-          style={{ width: "50rem", height: "20rem", objectFit: "contain" }}
+          style={{ width: "50rem", height: "25rem", objectFit: "contain" }}
         >
           <div className="row  d-flex justify-content-evenly align-item-center ">
             <div className="col-sm-6 col-md-6 col-lg-6 col-xl-5 offset-xl-1  ">
               <div className="card border-white p-3">
                 <img
-                  src={product.image}
+                  src={product.image?.url}
                   alt=""
                   width="20rem"
                   height="200rem"
@@ -66,7 +66,7 @@ const ProductsDetails = () => {
               <div
                 className="card-body"
                 style={{
-                  width: "12rem",
+                  width: "20rem",
                   height: "20rem",
                   objectFit: "contain",
                 }}

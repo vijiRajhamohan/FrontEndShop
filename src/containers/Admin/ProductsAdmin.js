@@ -7,7 +7,6 @@ import AdminNav from "../../components/AdminNav";
 
 const ProductsAdmin = () => {
   const adminToken = window.localStorage.getItem('adminToken')
- 
   const navigate = useNavigate();
   const [products, setProducts] = useState({});
 
@@ -36,7 +35,11 @@ const ProductsAdmin = () => {
     if (window.confirm(`Are You Sure You Want to Delete this Product ${_id}`)) {
       try {
         await axios.delete(
-          `https://pettishopnew.herokuapp.com/api/productsDetails/${_id}`,
+          `https://pettishopnew.herokuapp.com/api/productsDetails/${_id}`, {
+          headers: {
+            "Authorization": `Bearer ${adminToken}`
+          }
+        },
           {
             _id,
           }
