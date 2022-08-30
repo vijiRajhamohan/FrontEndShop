@@ -36,14 +36,14 @@ function UpdateProfile() {
       ) : (
         <div className="progress mt-3">
             <h1>Loading....</h1> 
-          {/* <div
+          <div
             className="progress-bar progress-bar-striped progress-bar-animated"
             role="progressbar"
             aria-valuenow="75"
             aria-valuemin="0"
             aria-valuemax="100"
             style={{ width: "75%" }}
-          ></div> */}
+          ></div>
         </div>
       )}
     </div>
@@ -69,7 +69,7 @@ export function EditUpdateForm({ profile }) {
       address: address,
       pincode: pincode,
     };
-     await axios.put(`https://pettishopnew.herokuapp.com/api/user/find/${profile._id}`,updateProfile,
+    await axios.put(`https://pettishopnew.herokuapp.com/api/userupdate`,updateProfile,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,

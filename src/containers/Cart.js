@@ -57,18 +57,15 @@ const Cart = () => {
   const getOrders = async () => {
     try {
       const res = await axios.post(
-        `https://pettishopnew.herokuapp.com/api/order`,
+        "https://pettishopnew.herokuapp.com/api/order", { product, total },
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         },
-        {
-         
-          product,
-          total,
-        }
+        
       );
+      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -136,7 +133,7 @@ const Cart = () => {
                       <tr key={index}>
                         <td>
                           <img
-                            src={product.image}
+                            src={product.image?.url}
                             alt=""
                             style={{
                               objectFit: "contain",
