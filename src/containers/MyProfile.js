@@ -34,17 +34,17 @@ export default function UserProfile() {
       <Navigation />
       <div className="container">
         <div className="row mx-auto mt-3">
-          <div className="col-md-5 col-lg-5 col-xl-4">
+          <div className="col-md-6 col-lg-6 col-xl-4">
             <img
               src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
               alt=""
               className="img-fluid"
             />
           </div>
-          <div className="col-md-7 col-lg-7 col-xl-4 offset-xl-1">
-            <div className="card m-1" style={{ width: "600px" }}>
+          <div className="col-md-6 col-lg-6 col-xl-4 offset-xl-1">
+            <div className="card m-1" style={{ width: "600px",borderColor:"brown" }}>
               {/* Profile details */}
-              <div className="col-sm-6 col-md-6 col-lg-4 mx-auto text-center">
+              <div className="col-sm-8 col-md-8 col-lg-8 mx-auto ">
                 <h5
                   className="text-danger font-size-4 mt-3"
                   style={{ fontSize: "15px" }}

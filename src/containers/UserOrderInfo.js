@@ -8,14 +8,14 @@ import Navigation from "../components/Navigation";
 export function UserOrderInfo() {
     const { id } = useParams();
     const [orders, setOrders] = useState({});
-    const adminToken = window.localStorage.getItem("adminToken");
+    const accessToken = window.localStorage.getItem("accessToken");
 
     const getOrderInfo = async () => {
         try {
             const { data } = await axios.get(
                 `https://pettishopnew.herokuapp.com/api/order/${id}`, {
                 headers: {
-                        "Authorization": `Bearer ${adminToken}`
+                        "Authorization": `Bearer ${accessToken}`
                 }
             }
             );

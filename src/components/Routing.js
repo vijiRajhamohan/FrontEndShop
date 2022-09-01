@@ -27,6 +27,7 @@ import AdminProducts from "../containers/Admin/AdminProducts";
 import OrdersAdmin from "../containers/Admin/OrdersAdmin";
 import UsersAdmin from "../containers/Admin/UsersAdmin";
 import { OrderAdminInfo } from "../containers/Admin/OrderAdminInfo";
+import Payment from "../containers/Payment";
 
 function routing() {
   return (
@@ -37,6 +38,7 @@ function routing() {
         <Route path={"/login"} element={<Login />} />
         <Route path={"/home"} element={<Home />} />
         <Route path={"/cart"} element={<Cart />} />
+        <Route path={"/payment"} element={<Payment/> } />
         <Route path={"/productsList/:catagory"} element={<Products />} />
         <Route path={"/productsLists"} element={<Products />} />
         <Route path={"/productsDetails/:id"} element={<ProductsDetails />} />

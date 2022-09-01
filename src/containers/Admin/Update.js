@@ -85,7 +85,7 @@ export function EditProduct({ prod }) {
     await axios.put(`https://pettishopnew.herokuapp.com/api/productsDetails/${prod._id}`, updateProduct,
       {
         headers: {
-          "Authorization": `Bearer ${adminToken}`,
+          Authorization: `Bearer ${adminToken}`,
         },
 
       }).then(() => navigate("/productsadmin"));

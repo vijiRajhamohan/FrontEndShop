@@ -43,7 +43,7 @@ function Recent() {
                   src={item.img}
                   alt="..."
                   style={{
-                    width: "300px",
+                    width: "320px",
                     height: "150px",
                     borderRadius: "150px",
                   }}

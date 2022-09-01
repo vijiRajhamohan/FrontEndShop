@@ -54,7 +54,7 @@ const OrdersAdmin = () => {
               orders.map((data) => {
                 return (
                   <tr>
-                    <td>{data.userId}</td>
+                    <td>{data.userid}</td>
                     <td>{data._id}</td>
                     <td>{data.total}</td>
                     <td>Delivered</td>

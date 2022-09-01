@@ -76,7 +76,7 @@ function AdminNav() {
                 </li>
                 <li className="nav-item">
                   <Link
-                    className="dropdown-item"
+                    className="nav-link active"
                     to="/landing"
                     onClick={Logout}
                   >

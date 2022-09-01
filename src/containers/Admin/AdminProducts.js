@@ -49,7 +49,7 @@ function AdminProducts() {
         price: user.price,
       };
       console.log(formValues);
-      const res = await axios.post(
+      await axios.post(
         "https://pettishopnew.herokuapp.com/api/products",
         formValues,
         {
