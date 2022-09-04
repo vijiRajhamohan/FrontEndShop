@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import AdminNav from "../../components/AdminNav";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 function AdminProducts() {
   const adminToken = window.localStorage.getItem("adminToken");
@@ -56,10 +57,16 @@ function AdminProducts() {
           headers: {
             Authorization: `Bearer ${adminToken}`,
           },
-        }
-      ).then(() => navigate("/productsadmin"));
+        },
+         toast.success(
+          "Products added successfully",
+          { autoClose: 2000 },
+          { position: toast.POSITION.TOP_RIGHT }
+        )
+      )
+      navigate("/productsadmin");
+     
       
-      alert("Products added successfully");
     } catch (err) {
       console.log(err.message);
     }

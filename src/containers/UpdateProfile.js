@@ -5,6 +5,7 @@ import "./Register.css";
 import Navigation from "../components/Navigation";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function UpdateProfile() {
   const { id } = useParams();
@@ -75,7 +76,14 @@ export function EditUpdateForm({ profile }) {
           Authorization: `Bearer ${accessToken}`,
         },
     
-      }).then(() => navigate("/myprofile"));
+      })
+      
+    toast.success(
+      "Updated successfully",
+      { autoClose: 2000 },
+      { position: toast.POSITION.TOP_RIGHT }
+    );
+    navigate("/myprofile"); 
   };
 
   return (

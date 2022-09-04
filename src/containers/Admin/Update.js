@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import AdminNav from "../../components/AdminNav";
 import { useParams } from "react-router-dom";
-
+import { toast } from "react-toastify";
 export function Update() {
   const adminToken = window.localStorage.getItem('adminToken');
   const { id } = useParams();
@@ -88,8 +88,14 @@ export function EditProduct({ prod }) {
           Authorization: `Bearer ${adminToken}`,
         },
 
-      }).then(() => navigate("/productsadmin"));
-  };
+      })
+    toast.success(
+      "Updated successfully",
+      { autoClose: 2000 },
+      { position: toast.POSITION.TOP_RIGHT }
+    )
+    navigate("/productsadmin");
+    };
   
 
   return (

@@ -11,11 +11,9 @@ import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const KEY =
     "pk_test_51LUWTrSImtCLG8DbASYF7VaJDv9tWSotvodcAMS2gT5JUzPQGHbCwswCj17U0eqF15u1eX9x7hVnwm0tYzu1Il2900aFjk0q1I";
- 
+
   const accessToken = window.localStorage.getItem("accessToken");
   const email = window.localStorage.getItem("email");
-
-
 
   const navigate = useNavigate();
 
@@ -27,7 +25,7 @@ const Cart = () => {
   const total = cart.total;
 
   const [stripeToken, setStripeToken] = useState(null);
- const onToken = (token) => {
+  const onToken = (token) => {
     setStripeToken(token);
     console.log(token);
     swal("SUCCESSFULY PAID!", "Check your mail!");
@@ -37,7 +35,7 @@ const Cart = () => {
 
   //  Payment Api
 
-  useEffect(() => {
+  
     const makeRequest = async () => {
       try {
         const res = await axios.post(
@@ -48,7 +46,7 @@ const Cart = () => {
           },
           {
             headers: {
-              "Authorization": `Bearer ${accessToken}`,
+              Authorization: `Bearer ${accessToken}`,
             },
           }
         );
@@ -57,13 +55,15 @@ const Cart = () => {
       }
     };
 
+  useEffect(() => {
+    makeRequest();
     stripeToken && makeRequest();
   }, [stripeToken, cart.total]);
 
   // Order Api
   const getOrders = async () => {
     try {
-      const {data} = await axios.post(
+      const { data } = await axios.post(
         "https://pettishopnew.herokuapp.com/api/order",
         { product, total, email },
         {
@@ -72,28 +72,24 @@ const Cart = () => {
           },
         }
       );
-     
-     await axios.post("https://pettishopnew.herokuapp.com/api/order/mail",
+
+      await axios.post(
+        "https://pettishopnew.herokuapp.com/api/order/mail",
         {
-          
           email: data.email,
-          product:data.product,
-          total:data.total,
-          
+          product: data.product,
+          total: data.total,
         },
         {
           headers: {
-            "Authorization": `Bearer ${accessToken}`
+            Authorization: `Bearer ${accessToken}`,
           },
-
         }
       );
     } catch (error) {
       console.log(error.message);
     }
-  }
-
-   
+  };
 
   useEffect(() => {
     getOrders();
@@ -147,17 +143,17 @@ const Cart = () => {
         </div>
       ) : (
         <div>
-          <div class="row g-3 pt-2">
-            <div class="col">
-              <input
-                type="text"
-                class="form-control"
-                value={email}
-                placeholder="First name"
-                aria-label="First name"
-              />
-            </div>
-          </div>
+          {/* //   <div class="row g-3 pt-2">
+        //     <div class="col">
+        //       <input
+        //         type="text"
+        //         class="form-control"
+        //         value={email}
+        //         placeholder="First name"
+        //         aria-label="First name"
+        //       />
+        //     </div>
+        //   </div> */}
           <section className="py-4 container">
             <div className="row justify-content-center">
               <div className="col-12 rounded-3">
@@ -217,7 +213,7 @@ const Cart = () => {
                   currency="INR"
                   stripeKey={KEY}
                 >
-                  <button className="btn btn-danger ms-2 ">Pay Now</button>
+                  <button className="btn btn-danger ms-2 mt-2">Pay Now</button>
                 </StripeCheckout>
               </div>
             </div>
@@ -227,6 +223,5 @@ const Cart = () => {
     </>
   );
 };
-
 
 export default Cart;

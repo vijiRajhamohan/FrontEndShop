@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { toast } from "react-toastify";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 
@@ -63,10 +63,20 @@ function Register() {
                   values
                 );
                 console.log(res);
-                alert("Register Successfully");
+                toast.success(
+                  "Register successfully",
+                  { autoClose: 2000 },
+                  { position: toast.POSITION.TOP_RIGHT }
+                );
+              
                 navigate("/login");
               } catch ({ response: { res } }) {
-                alert("Email already exist!");
+                toast.error(
+                  "Email already exist!",
+                  { autoClose: 2000 },
+                  { position: toast.POSITION.TOP_RIGHT }
+                );
+               
               }
             }}
           >

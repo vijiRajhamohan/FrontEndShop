@@ -3,14 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
-
+import { toast } from "react-toastify";
 function Login() {
   // Login Schema
 
   const navigate = useNavigate();
   const loginSchema = Yup.object().shape({
     email: Yup.string().email().required(),
-    password: Yup.string().min(6).max(10).required("Invalid password"),
+    password: Yup.string().min(6).required("Invalid password"),
   });
 
   return (
@@ -48,15 +48,26 @@ function Login() {
               onSubmit={async (values) => {
                 // api call
                 try {
-               
-                  const { data } = await axios.post("https://pettishopnew.herokuapp.com/api/login", values);
+                  const { data } = await axios.post(
+                    "https://pettishopnew.herokuapp.com/api/login",
+                    values
+                  );
 
                   window.localStorage.setItem("accessToken", data);
                   window.localStorage.setItem("email", values.email);
+                  
+                  toast.success(
+                    "Loggedin successfully",
+                    { autoClose: 2000 },
+                    { position: toast.POSITION.TOP_RIGHT }
+                  );
                   navigate("/home");
-                  alert("loggedin successfully");
                 } catch ({ response: { data } }) {
-                  alert("Wrong credential!");
+                  toast.error(
+                    "Wrong credential!",
+                    { autoClose: 2000 },
+                    { position: toast.POSITION.TOP_RIGHT }
+                  );
                 }
               }}
             >
@@ -96,7 +107,19 @@ function Login() {
                       {errors.password}
                     </span>
                   ) : null}
-
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="form-check mb-0">
+                      <input
+                        className="form-check-input me-2"
+                        type="checkbox"
+                        id="form2Example3"
+                      />
+                      <label className="form-check-label">Remember me</label>
+                    </div>
+                    <Link to="/password" className="text-body">
+                      Forgot password
+                    </Link>
+                  </div>
                   <div className="text-center text-lg-start mt-4 pt-2">
                     <button
                       type="submit"

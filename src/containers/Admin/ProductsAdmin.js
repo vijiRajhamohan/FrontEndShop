@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminNav from "../../components/AdminNav";
-
+import { toast } from "react-toastify";
 
 const ProductsAdmin = () => {
   const adminToken = window.localStorage.getItem('adminToken')
@@ -44,7 +44,12 @@ const ProductsAdmin = () => {
             _id,
           }
         );
-        alert("Deleted Successfully");
+        toast.success(
+          "Deleted successfully",
+          { autoClose: 2000 },
+          { position: toast.POSITION.TOP_RIGHT }
+        );
+       
         getProducts();
       } catch (error) {
         console.log(error.message);

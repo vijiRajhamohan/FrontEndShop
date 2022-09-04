@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import AdminNav from "../../components/AdminNav";
 import "./Table.css";
+import { toast } from "react-toastify";
 
 const UserAdmin = () => {
   const adminToken = window.localStorage.getItem('adminToken')
@@ -43,7 +44,12 @@ const UserAdmin = () => {
             _id,
           }
         );
-        alert("Deleted Successfully");
+        toast.success(
+          "Deleted successfully",
+          { autoClose: 2000 },
+          { position: toast.POSITION.TOP_RIGHT }
+        );
+        
         getUsers();
       } catch (error) {
         console.log(error.message);

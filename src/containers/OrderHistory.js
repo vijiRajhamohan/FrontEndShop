@@ -42,7 +42,7 @@ export default function OrderHistory() {
             <tr>
               <th>ORDER ID</th>
               <th>Total</th>
-              <th>STATUS</th>
+              {/* <th>STATUS</th> */}
               <th>Action</th>
             </tr>
           </thead>
@@ -53,7 +53,7 @@ export default function OrderHistory() {
                 <tr key={index}>
                   <td>{u._id}</td>
                   <td>{u.total}</td>
-                  <td>deliverded</td>
+                  {/* <td>deliverded</td> */}
                   <td >
                     <button
                       className="btn btn-outline-white border-0"

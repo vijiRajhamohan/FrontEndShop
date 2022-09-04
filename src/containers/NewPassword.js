@@ -1,45 +1,28 @@
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+const NewPassword = () => {
+  const navigate = useNavigate();
+  const [password, setPasword] = useState("");
+  const { token } = useParams();
+  console.log(token);
+  const PostData = async () => {
+    try {
+      await axios.post("https://pettishopnew.herokuapp.com/api/new-password", {
+        password,
+        token,
+      })
+      toast.success(
+        "Your Password changed!",
+        { autoClose: 2000 },
+        { position: toast.POSITION.TOP_RIGHT }
+      )
 
-
-import React from "react";
-import { Link } from "react-router-dom";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import "./Login.css";
-import Joi from "joi";
-
-const loginSchema = Joi.object({
-  email: Joi.string()
-    .email({ tlds: { allow: false } })
-    .required(),
-  password: Joi.string().alphanum().min(6).max(10).required(),
-  // mobile_number: Joi.string()
-  //   .length(10)
-  //   .pattern(/^[0-9]+$/)
-  //   .required(),
-});
-
-const INTIAL_FORM = {
-  email: "",
-  password: "",
-  // mobile_number: "",
-};
-
-function NewPassword() {
-  const validate = (values) => {
-    const errors = {};
-    const { error } = loginSchema.validate(values);
-    if (error) {
-      const [err] = error.details;
-      errors[err.context.key] = err.message;
-    }
-
-    return errors;
-  };
-
-  const handleSubmit = (values) => {
-    console.log("submitted", values);
-    const { error } = loginSchema.validate(values);
-    if (error) {
-      console.log(error.details[0].ErrorMessage);
+      navigate("/login")
+    } catch (err) {
+      console.log(err);
+     
     }
   };
 
@@ -63,89 +46,29 @@ function NewPassword() {
               className="img-fluid"
             />
           </div>
-
           <div className="col-md-6 col-lg-6 col-xl-4 offset-xl-1">
-            <h3 className="mb-5 text-uppercase">Set New Password</h3>
-            <Formik
-              initialValues={INTIAL_FORM}
-              validate={validate}
-              onSubmit={handleSubmit}
-            >
-              {({ handleSubmit }) => {
-                return (
-                  <Form id="login-form" onSubmit={handleSubmit}>
-                    <div className="d-flex align-items-center input-field mb-4">
-                      <span className="bx bx-user-circle"></span>
-                      <Field
-                        name="email"
-                        className="form-control "
-                        placeholder="Enter the Email"
-                      />
-                      <ErrorMessage className="text-danger" name="email" />
-                      {/* <Field
-                          name="mobile_number"
-                          className="form-control "
-                          placeholder="Enter the mobile number"
-                        />
-                        <ErrorMessage
-                          className="text-danger"
-                          name="mobile_number"
-                        /> */}
-                    </div>
-
-                    <div className="d-flex align-items-center input-field mb-4">
-                      <span className="bx bxs-lock-open"></span>
-                      <Field
-                        name="password"
-                        className="form-control "
-                        placeholder="New password"
-                      />
-                      <ErrorMessage className="text-danger" name="password" />
-                      <button className="btn btn-link">
-                        <span className="bx bx-low-vision"></span>
-                      </button>
-                    </div>
-                    <div className="d-flex align-items-center input-field mb-4">
-                      <span className="bx bxs-lock-open"></span>
-                      <Field
-                        name="cpassword"
-                        className="form-control "
-                        placeholder="conform password"
-                      />
-                      <ErrorMessage className="text-danger" name="cpassword" />
-                      <button className="btn btn-link">
-                        <span className="bx bx-low-vision"></span>
-                      </button>
-                    </div>
-
-                    
-             
-
-                    <div className="text-center text-lg-start mt-4 pt-2">
-                      <Link to="/login">
-                        <button
-                          type="submit"
-                          className="btn btn-primary btn-lg"
-                          style={{
-                            paddinglLeft: "2.5rem",
-                            paddingRight: "2.5rem",
-                          }}
-                        >
-                          Login
-                        </button>
-                     </Link>
-                     
-                      
-                    </div>
-                  </Form>
-                );
-              }}
-            </Formik>
+            <div className="mycard">
+              <div className="card auth-card input-field ">
+                <h4>Change Password</h4>{" "}
+                <input
+                  type="password"
+                  placeholder="Enter a new password"
+                  value={password}
+                  onChange={(e) => setPasword(e.target.value)}
+                />
+                <button
+                  className=" btn btn-success "
+                  onClick={() => PostData()}
+                >
+                  Update Password
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default NewPassword;

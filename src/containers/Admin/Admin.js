@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 
@@ -43,10 +44,19 @@ function Admin() {
             const { data } = await axios.post("https://pettishopnew.herokuapp.com/api/admin/login", values);
                window.localStorage.setItem("adminToken", data);
                   window.localStorage.setItem("email", values.email);
+                  
+                  toast.success(
+                    "Loggedin successfully",
+                    { autoClose: 2000 },
+                    { position: toast.POSITION.TOP_RIGHT }
+                  )
                   navigate("/productsadmin");
-                  alert("loggedin successfully");
                 } catch ({ response: { data } }) {
-                  alert("Wrong credential!");
+                  toast.error(
+                    "Wrong credential!",
+                    { autoClose: 2000 },
+                    { position: toast.POSITION.TOP_RIGHT }
+                  );
                 }
               }}
             >
