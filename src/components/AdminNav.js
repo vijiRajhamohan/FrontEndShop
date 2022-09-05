@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 function AdminNav() {
+
+  const navigate = useNavigate();
   const Logout = () => {
     window.localStorage.clear();
     navigate("/landing");
