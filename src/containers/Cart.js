@@ -91,9 +91,7 @@ const Cart = () => {
     }
   };
 
-  useEffect(() => {
-    getOrders();
-  }, []);
+ 
 
   // remove from cart
   const handleRemove = (index) => {
@@ -143,17 +141,6 @@ const Cart = () => {
         </div>
       ) : (
         <div>
-          {/* //   <div class="row g-3 pt-2">
-        //     <div class="col">
-        //       <input
-        //         type="text"
-        //         class="form-control"
-        //         value={email}
-        //         placeholder="First name"
-        //         aria-label="First name"
-        //       />
-        //     </div>
-        //   </div> */}
           <section className="py-4 container">
             <div className="row justify-content-center">
               <div className="col-12 rounded-3">
@@ -207,13 +194,15 @@ const Cart = () => {
                   customer
                   billingAddress
                   shippingAddress
-                  description={`Your total is  ₹ ${Math.round(cart.total)}`}
+                  description={`Your total is  ₹ ${Math.floor(cart.total)}`}
                   amount={cart.total * 100}
                   token={onToken}
                   currency="INR"
                   stripeKey={KEY}
                 >
-                  <button className="btn btn-danger ms-2 mt-2">Pay Now</button>
+                    <button className="btn btn-danger ms-2 mt-2" 
+                      onClick={getOrders}
+                    >Pay Now</button>
                 </StripeCheckout>
               </div>
             </div>
