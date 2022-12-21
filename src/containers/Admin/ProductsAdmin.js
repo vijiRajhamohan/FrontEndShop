@@ -14,7 +14,7 @@ const ProductsAdmin = () => {
   const getProducts = async () => {
     try {
       const res = await axios.get(
-        "https://pettishopnew.herokuapp.com/api/productsLists", {
+        "https://shopbackend-n.vercel.app/api/productsLists", {
         headers: {
             "Authorization": `Bearer ${adminToken}`
         }
@@ -35,7 +35,7 @@ const ProductsAdmin = () => {
     if (window.confirm(`Are You Sure You Want to Delete this Product ${_id}`)) {
       try {
         await axios.delete(
-          `https://pettishopnew.herokuapp.com/api/productsDetails/${_id}`, {
+          `https://shopbackend-n.vercel.app/api/productsDetails/${_id}`, {
           headers: {
             "Authorization": `Bearer ${adminToken}`
           }

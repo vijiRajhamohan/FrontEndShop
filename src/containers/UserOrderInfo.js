@@ -13,7 +13,7 @@ export function UserOrderInfo() {
     const getOrderInfo = async () => {
         try {
             const { data } = await axios.get(
-                `https://pettishopnew.herokuapp.com/api/order/${id}`, {
+                `https://shopbackend-n.vercel.app/api/order/${id}`, {
                 headers: {
                         "Authorization": `Bearer ${accessToken}`
                 }

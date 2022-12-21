@@ -39,7 +39,7 @@ const Cart = () => {
     const makeRequest = async () => {
       try {
         const res = await axios.post(
-          "https://pettishopnew.herokuapp.com/api/payment",
+          "https://shopbackend-n.vercel.app/api/payment",
           {
             tokenId: stripeToken.id,
             amount: { total },
@@ -64,7 +64,7 @@ const Cart = () => {
   const getOrders = async () => {
     try {
       const { data } = await axios.post(
-        "https://pettishopnew.herokuapp.com/api/order",
+        "https://shopbackend-n.vercel.app/api/order",
         { product, total, email },
         {
           headers: {
@@ -74,7 +74,7 @@ const Cart = () => {
       );
 
       await axios.post(
-        "https://pettishopnew.herokuapp.com/api/order/mail",
+        "https://shopbackend-n.vercel.app/api/order/mail",
         {
           email: data.email,
           product: data.product,

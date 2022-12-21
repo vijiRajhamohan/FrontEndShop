@@ -41,7 +41,7 @@ function Admin() {
               validationSchema={adminLoginSchema}
               onSubmit={async (values) => {
                 try {
-            const { data } = await axios.post("https://pettishopnew.herokuapp.com/api/admin/login", values);
+            const { data } = await axios.post("https://shopbackend-n.vercel.app/api/admin/login", values);
                window.localStorage.setItem("adminToken", data);
                   window.localStorage.setItem("email", values.email);
                   

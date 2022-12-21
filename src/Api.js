@@ -1,1 +1,1 @@
-export const API ="https://pettishopnew.herokuapp.com/"
+export const API ="https://shopbackend-n.vercel.app/"

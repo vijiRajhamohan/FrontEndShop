@@ -12,7 +12,7 @@ export default function UserProfile() {
   const getUserProfile = async () => {
     try {
       const { data } = await axios.get(
-        `https://pettishopnew.herokuapp.com/api/user/find/id`,
+        `https://shopbackend-n.vercel.app/api/user/find/id`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,

@@ -13,7 +13,7 @@ export function Update() {
   const update = async () => {
     try {
       const { data } = await axios.get(
-        `https://pettishopnew.herokuapp.com/api/productsLists/${id}`, {
+        `https://shopbackend-n.vercel.app/api/productsLists/${id}`, {
         headers: {
             Authorization: `Bearer ${adminToken}`
       }
@@ -82,7 +82,7 @@ export function EditProduct({ prod }) {
       quantity: quantity,
       price: price,
     };
-    await axios.put(`https://pettishopnew.herokuapp.com/api/productsDetails/${prod._id}`, updateProduct,
+    await axios.put(`https://shopbackend-n.vercel.app/api/productsDetails/${prod._id}`, updateProduct,
       {
         headers: {
           Authorization: `Bearer ${adminToken}`,

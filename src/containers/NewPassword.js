@@ -9,7 +9,7 @@ const NewPassword = () => {
   console.log(token);
   const PostData = async () => {
     try {
-      await axios.post("https://pettishopnew.herokuapp.com/api/new-password", {
+      await axios.post("https://shopbackend-n.vercel.app/api/new-password", {
         password,
         token,
       })

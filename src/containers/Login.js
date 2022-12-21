@@ -49,7 +49,7 @@ function Login() {
                 // api call
                 try {
                   const { data } = await axios.post(
-                    "https://pettishopnew.herokuapp.com/api/login",
+                    "https://shopbackend-n.vercel.app/api/login",
                     values
                   );
 

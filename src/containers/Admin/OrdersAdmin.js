@@ -14,7 +14,7 @@ const OrdersAdmin = () => {
   const getorder = async () => {
     try {
       const res = await axios.get(
-        "https://pettishopnew.herokuapp.com/api/order",
+        "https://shopbackend-n.vercel.app/api/order",
         {
           headers: {
             Authorization: `Bearer ${adminToken}`,

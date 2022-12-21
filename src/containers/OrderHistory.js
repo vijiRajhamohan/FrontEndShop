@@ -15,7 +15,7 @@ export default function OrderHistory() {
   const getUserById = async () => {
     try {
       const { data } = await axios.get(
-        `https://pettishopnew.herokuapp.com/api/order/find/userid`,
+        `https://shopbackend-n.vercel.app/api/order/find/userid`,
         {
           headers: {
             "Authorization": `Bearer ${accessToken}`

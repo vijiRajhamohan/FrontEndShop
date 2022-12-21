@@ -59,7 +59,7 @@ function Register() {
             onSubmit={async (values) => {
               try {
                 const res = await axios.post(
-                  "https://pettishopnew.herokuapp.com/api/register",
+                  "https://shopbackend-n.vercel.app/api/register",
                   values
                 );
                 console.log(res);

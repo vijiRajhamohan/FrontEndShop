@@ -18,8 +18,8 @@ function Products() {
       try {
         const res = await axios.get(
           cat
-            ? `https://pettishopnew.herokuapp.com/api/productsList?category=${cat}`
-            : "https://pettishopnew.herokuapp.com/api/productsLists"
+            ? `https://shopbackend-n.vercel.app/api/productsList?category=${cat}`
+            : "https://shopbackend-n.vercel.app/api/productsLists"
           ,
           {
             headers: {

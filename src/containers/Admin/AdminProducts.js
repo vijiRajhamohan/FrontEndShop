@@ -51,7 +51,7 @@ function AdminProducts() {
       };
       console.log(formValues);
       await axios.post(
-        "https://pettishopnew.herokuapp.com/api/products",
+        "https://shopbackend-n.vercel.app/api/products",
         formValues,
         {
           headers: {
