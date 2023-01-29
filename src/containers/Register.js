@@ -59,7 +59,7 @@ function Register() {
             onSubmit={async (values) => {
               try {
                 const res = await axios.post(
-                  "https://shopbackend-n.vercel.app/api/register",
+                  "https://backendfinal-oi59.onrender.com/api/register",
                   values
                 );
                 console.log(res);

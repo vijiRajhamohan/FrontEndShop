@@ -15,7 +15,7 @@ const Password = () => {
       ) {
         return;
       }
-      await axios.post("https://shopbackend-n.vercel.app/api/reset-password", { email });
+      await axios.post("https://backendfinal-oi59.onrender.com/api/reset-password", { email });
       toast("Check Your Mail", { autoClose: 2000 });
       navigate("/login");
     } catch (err) {

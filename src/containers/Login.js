@@ -49,7 +49,7 @@ function Login() {
                 // api call
                 try {
                   const { data } = await axios.post(
-                    "https://shopbackend-n.vercel.app/api/login",
+                    "https://backendfinal-oi59.onrender.com/api/login",
                     values
                   );
 
@@ -108,14 +108,14 @@ function Login() {
                     </span>
                   ) : null}
                   <div className="d-flex justify-content-between align-items-center">
-                    <div className="form-check mb-0">
+                    {/* <div className="form-check mb-0">
                       <input
                         className="form-check-input me-2"
                         type="checkbox"
                         id="form2Example3"
                       />
                       <label className="form-check-label">Remember me</label>
-                    </div>
+                    </div> */}
                     <Link to="/password" className="text-body">
                       Forgot password
                     </Link>

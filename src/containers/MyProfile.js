@@ -12,7 +12,7 @@ export default function UserProfile() {
   const getUserProfile = async () => {
     try {
       const { data } = await axios.get(
-        `https://shopbackend-n.vercel.app/api/user/find/id`,
+        `https://backendfinal-oi59.onrender.com/api/user/find/id`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,

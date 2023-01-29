@@ -24,12 +24,14 @@ import { UserOrderInfo } from "../containers/UserOrderInfo";
 import UpdateProfile from "../containers/UpdateProfile";
 import MyProfile from "../containers/MyProfile";
 import Admin from "../containers/Admin/Admin";
+import AdminRegister from "../containers/Admin/AdminRegister";
 import ProductsAdmin from "../containers/Admin/ProductsAdmin";
 import { Update } from "../containers/Admin/Update";
 import AdminProducts from "../containers/Admin/AdminProducts";
 import OrdersAdmin from "../containers/Admin/OrdersAdmin";
 import UsersAdmin from "../containers/Admin/UsersAdmin";
 import { OrderAdminInfo } from "../containers/Admin/OrderAdminInfo";
+
 
 function routing() {
   return (
@@ -55,6 +57,7 @@ function routing() {
         <Route path={"/userorderinfo/:id"} element={<Userprivateroute><UserOrderInfo /></Userprivateroute>} />
         <Route path={"/myprofile"} element={<Userprivateroute><MyProfile /></Userprivateroute>} />
         <Route path={"/updateprofile/edit/:id"} element={<Userprivateroute><UpdateProfile /></Userprivateroute>} />
+        <Route path={"/adminregister"} element={<AdminRegister/>} />
         <Route path={"/admin"} element={<Admin />} />
         <Route path={"/productsadmin"} element={<Adminprivateroute><ProductsAdmin /></Adminprivateroute> } />
         <Route path={"/update/edit/:id"} element={<Adminprivateroute><Update /></Adminprivateroute>} />

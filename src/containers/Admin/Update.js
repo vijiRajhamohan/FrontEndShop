@@ -13,7 +13,7 @@ export function Update() {
   const update = async () => {
     try {
       const { data } = await axios.get(
-        `https://shopbackend-n.vercel.app/api/productsLists/${id}`, {
+        `https://backendfinal-oi59.onrender.com/api/productsLists/${id}`, {
         headers: {
             Authorization: `Bearer ${adminToken}`
       }
@@ -82,7 +82,7 @@ export function EditProduct({ prod }) {
       quantity: quantity,
       price: price,
     };
-    await axios.put(`https://shopbackend-n.vercel.app/api/productsDetails/${prod._id}`, updateProduct,
+    await axios.put(`https://backendfinal-oi59.onrender.com/api/productsDetails/${prod._id}`, updateProduct,
       {
         headers: {
           Authorization: `Bearer ${adminToken}`,

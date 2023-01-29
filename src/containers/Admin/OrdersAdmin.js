@@ -14,7 +14,7 @@ const OrdersAdmin = () => {
   const getorder = async () => {
     try {
       const res = await axios.get(
-        "https://shopbackend-n.vercel.app/api/order",
+        "https://backendfinal-oi59.onrender.com/api/order",
         {
           headers: {
             Authorization: `Bearer ${adminToken}`,

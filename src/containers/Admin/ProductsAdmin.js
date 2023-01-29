@@ -14,7 +14,7 @@ const ProductsAdmin = () => {
   const getProducts = async () => {
     try {
       const res = await axios.get(
-        "https://shopbackend-n.vercel.app/api/productsLists", {
+        "https://backendfinal-oi59.onrender.com/api/productsLists", {
         headers: {
             "Authorization": `Bearer ${adminToken}`
         }
@@ -35,7 +35,7 @@ const ProductsAdmin = () => {
     if (window.confirm(`Are You Sure You Want to Delete this Product ${_id}`)) {
       try {
         await axios.delete(
-          `https://shopbackend-n.vercel.app/api/productsDetails/${_id}`, {
+          `https://backendfinal-oi59.onrender.com/api/productsDetails/${_id}`, {
           headers: {
             "Authorization": `Bearer ${adminToken}`
           }

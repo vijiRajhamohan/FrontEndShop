@@ -14,7 +14,7 @@ function UpdateProfile() {
   const editprofile = async () => {
     try {
       const { data } = await axios.get(
-        `https://shopbackend-n.vercel.app/api/user/find/${id}`,
+        `https://backendfinal-oi59.onrender.com/api/user/find/${id}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -70,7 +70,7 @@ export function EditUpdateForm({ profile }) {
       address: address,
       pincode: pincode,
     };
-    await axios.put(`https://shopbackend-n.vercel.app/api/userupdate`,updateProfile,
+    await axios.put(`https://backendfinal-oi59.onrender.com/api/userupdate`,updateProfile,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,

@@ -18,8 +18,8 @@ function Products() {
       try {
         const res = await axios.get(
           cat
-            ? `https://shopbackend-n.vercel.app/api/productsList?category=${cat}`
-            : "https://shopbackend-n.vercel.app/api/productsLists"
+            ? `https://backendfinal-oi59.onrender.com/api/productsList?category=${cat}`
+            : "https://backendfinal-oi59.onrender.com/api/productsLists"
           ,
           {
             headers: {

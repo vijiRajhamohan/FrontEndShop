@@ -41,7 +41,7 @@ function Admin() {
               validationSchema={adminLoginSchema}
               onSubmit={async (values) => {
                 try {
-            const { data } = await axios.post("https://shopbackend-n.vercel.app/api/admin/login", values);
+            const { data } = await axios.post("https://backendfinal-oi59.onrender.com/api/admin/login", values);
                window.localStorage.setItem("adminToken", data);
                   window.localStorage.setItem("email", values.email);
                   
@@ -95,7 +95,11 @@ function Admin() {
                       {errors.password}
                     </span>
                   ) : null}
-
+                  {/* <div className="d-flex justify-content-between align-items-center">
+                    <Link to="/password" className="text-body">
+                      Forgot password
+                    </Link>
+                  </div> */}
                   <div className="text-center text-lg-start mt-4 pt-2">
                     <button
                       type="submit"
@@ -107,6 +111,12 @@ function Admin() {
                     >
                       Login
                     </button>
+                    <p className="small fw-bold mt-2 pt-1 pb-2 mb-0">
+                      Don't have an account?
+                      <Link to="/adminregister" className="link-danger">
+                        Register
+                      </Link>
+                    </p>
                   </div>
                 </Form>
               )}

@@ -12,7 +12,7 @@ const UserAdmin = () => {
   const getUsers = async () => {
     try {
       const res = await axios.get(
-        "https://shopbackend-n.vercel.app/api/user/find", {
+        "https://backendfinal-oi59.onrender.com/api/user/find", {
         headers: {
             "Authorization": `Bearer ${adminToken}`
         }
@@ -35,7 +35,7 @@ const UserAdmin = () => {
     if (window.confirm(`Are You Sure You Want to Delete user ${_id}`)) {
       try {
         await axios.delete(
-          `https://shopbackend-n.vercel.app/api/user/${_id}`, {
+          `https://backendfinal-oi59.onrender.com/api/user/${_id}`, {
           headers: {
             "Authorization": `Bearer ${adminToken}`
           }

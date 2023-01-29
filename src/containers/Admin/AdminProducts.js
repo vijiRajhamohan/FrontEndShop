@@ -51,7 +51,7 @@ function AdminProducts() {
       };
       console.log(formValues);
       await axios.post(
-        "https://shopbackend-n.vercel.app/api/products",
+        "https://backendfinal-oi59.onrender.com/api/products",
         formValues,
         {
           headers: {

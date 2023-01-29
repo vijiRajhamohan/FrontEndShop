@@ -9,7 +9,7 @@ const NewPassword = () => {
   console.log(token);
   const PostData = async () => {
     try {
-      await axios.post("https://shopbackend-n.vercel.app/api/new-password", {
+      await axios.post("https://backendfinal-oi59.onrender.com/api/new-password", {
         password,
         token,
       })

@@ -14,7 +14,7 @@ export function OrderAdminInfo() {
     const getOrderInfo = async () => {
         try {
             const { data } = await axios.get(
-                `https://shopbackend-n.vercel.app/api/order/${id}`, {
+                `https://backendfinal-oi59.onrender.com/api/order/${id}`, {
                 headers: {
                         "Authorization": `Bearer ${adminToken}`
                 }

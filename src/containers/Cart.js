@@ -39,7 +39,7 @@ const Cart = () => {
     const makeRequest = async () => {
       try {
         const res = await axios.post(
-          "https://shopbackend-n.vercel.app/api/payment",
+          "https://backendfinal-oi59.onrender.com/api/payment",
           {
             tokenId: stripeToken.id,
             amount: { total },
@@ -64,7 +64,7 @@ const Cart = () => {
   const getOrders = async () => {
     try {
       const { data } = await axios.post(
-        "https://shopbackend-n.vercel.app/api/order",
+        "https://backendfinal-oi59.onrender.com/api/order",
         { product, total, email },
         {
           headers: {
@@ -74,7 +74,7 @@ const Cart = () => {
       );
 
       await axios.post(
-        "https://shopbackend-n.vercel.app/api/order/mail",
+        "https://backendfinal-oi59.onrender.com/api/order/mail",
         {
           email: data.email,
           product: data.product,
