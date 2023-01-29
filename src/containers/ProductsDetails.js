@@ -17,7 +17,7 @@ const ProductsDetails = () => {
     const getProducts = async () => {
       try {
         const res = await axios.get(
-          "https://pettishopnew.herokuapp.com/api/productsLists/" + path,
+          "https://backendfinal-oi59.onrender.com/api/productsLists/" + path,
         {
             headers: {
             "Authorization": `Bearer ${accessToken}`
